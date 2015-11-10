@@ -31,20 +31,19 @@ bio.display=function()
 
 
 
-	$("#header").prepend(formattedPic);
-	$("#header").prepend(formattedRole);
-	$("#header").prepend(formattedName);
-	$("#header").append(formattedWelcome);
-	$("#topContacts").append(formattedTwitter);
-	$("#topContacts").append(formattedgithub);
-	$("#topContacts").append(formattedLocation);
-	$("#topContacts").append(formattedEmail);
-	$("#topContacts").append(formattedMobile);
-	$("#footerContacts").append(formattedTwitter);
-	$("#footerContacts").append(formattedgithub);
-	$("#footerContacts").append(formattedLocation);
-	$("#footerContacts").append(formattedEmail);
-	$("#footerContacts").append(formattedMobile);
+	$("#header").prepend(formattedPic).prepend(formattedRole)
+	.prepend(formattedName)
+	.append(formattedWelcome)
+	.append(formattedTwitter);
+	$("#topContacts").append(formattedgithub)
+	.append(formattedLocation)
+	.append(formattedEmail)
+	.append(formattedMobile);
+	$("#footerContacts").append(formattedTwitter)
+	.append(formattedgithub)
+	.append(formattedLocation)
+	.append(formattedEmail)
+	.append(formattedMobile);
 
 	if(bio.skills.length>0){
 	$("#header").append(HTMLskillsStart);
@@ -61,8 +60,9 @@ bio.display=function()
 bio.display();
 
 
-var work =[
-	{
+var work ={
+	"jobs":[
+		{
 		employer:"College of Science Technology and Applied Arts of Trinidad and Tobago",
 		title:"Systems Librarian",
 		location:"Port of Spain, Trinidad",
@@ -82,32 +82,35 @@ var work =[
 		location:"La Romaine,Trinidad",
 		dates:"2013-present",
 		description:"Providing technology management services for small and medium enterprises"
-	},
+	}
+	]
+};
 	
-]
+	
+
 
 work.display=function()
 {
-	for (job in work)
+	for (var job in work.jobs)
 	{
 		$("#workExperience").append(HTMLworkStart);
-		var formattedEmployer= HTMLworkEmployer.replace("%data%",work[job].employer);
-		var formattedTitle= HTMLworkTitle.replace("%data%",work[job].title);
+		var formattedEmployer= HTMLworkEmployer.replace("%data%",work.jobs[job].employer);
+		var formattedTitle= HTMLworkTitle.replace("%data%",work.jobs[job].title);
 		var formattedEmployerTitle= formattedEmployer + formattedTitle;
 		$(".work-entry:last").append(formattedEmployerTitle);
-		var formattedLoc= HTMLworkLocation.replace("%data%",work[job].location);
+		var formattedLoc= HTMLworkLocation.replace("%data%",work.jobs[job].location);
 		$(".work-entry:last").append(formattedLoc);
-		var formattedDates= HTMLworkDates.replace("%data%",work[job].dates);
+		var formattedDates= HTMLworkDates.replace("%data%",work.jobs[job].dates);
 		$(".work-entry:last").append(formattedDates);
-		var formattedDescription= HTMLworkDescription.replace("%data%",work[job].description);
+		var formattedDescription= HTMLworkDescription.replace("%data%",work.jobs[job].description);
 		$(".work-entry:last").append(formattedDescription);
 	}
 	
 }
 work.display();
 
-var projects =
-	 [
+var projects ={
+	"proj":[
 		{
 			title:"Tyroad Ltd",
 			dates:"2012",
@@ -123,22 +126,24 @@ var projects =
 
 		}
 
-	];
+	]
+};
+	 
 
 
 
 projects.display = function()
 {
-	for(var project in projects)
+	for(var project in projects.proj)
 	{
 		$("#projects").append(HTMLprojectStart);
-		var formattedprojectTitle = HTMLprojectTitle.replace("%data%",projects[project].title);
+		var formattedprojectTitle = HTMLprojectTitle.replace("%data%",projects.proj[project].title);
 		$(".project-entry:last").append(formattedprojectTitle);
-		var formattedprojectDate = HTMLprojectDates.replace("%data%",projects[project].dates);
+		var formattedprojectDate = HTMLprojectDates.replace("%data%",projects.proj[project].dates);
 		$(".project-entry:last").append(formattedprojectDate);
-		var formattedprojectDescription = HTMLprojectDescription.replace("%data%",projects[project].description);
+		var formattedprojectDescription = HTMLprojectDescription.replace("%data%",projects.proj[project].description);
 		$(".project-entry:last").append(formattedprojectDescription);
-		var formattedprojectImage = HTMLprojectImage.replace("%data%",projects[project].images);
+		var formattedprojectImage = HTMLprojectImage.replace("%data%",projects.proj[project].images);
 		$(".project-entry:last").append(formattedprojectImage);
 		}
 		
@@ -152,7 +157,7 @@ var education ={
 		name:"Florida State University",
 		location:"Tallahassee, Florida",
 		degree:"Masters",
-		major:"Library & Information Studies",
+		major:["Library & Information Studies"],
 		dates: 2004,
 		url:"http://ischool.cci.fsu.edu/academics/graduate/mslis/specializations/"
 	},
@@ -160,7 +165,7 @@ var education ={
 		name:"University of the West Indies",
 		location:"St.Augustine,Trinidad",
 		degree:"BA",
-		major:"History",
+		major:["History"],
 		dates: 1997,
 		url:"https://sta.uwi.edu/"
 	}
